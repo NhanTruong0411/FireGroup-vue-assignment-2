@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <link rel="stylesheet" href="./assets/style/css/main.css">
+   <title>Assignment 2</title>
+</head>
+<body>
+   <div id="app" class="products">
+      <my-header headingtitle="Add Product"></my-header>
+      <my-content 
+         :temp_array = "temp_array"
+         :paginationproduct = "paginationproduct"
+         :sort_product_list = "sort_product_list"
+         :do_filter = "do_filter"
+         :is_empty_obj = "is_empty_obj"
+         @selected_list = "passing_selected_list"
+         v-model = "search_input"
+      ></my-content>
+      <my-footer
+         :prev_page="prev_page"
+         :next_page = "next_page"
+         :is_prev_disabled = "is_prev_disabled"
+         :is_next_disabled = "is_next_disabled"
+         :selected_product_list = "selected_product_list"
+      ></my-footer>
+   </div>
+
+   <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+   <script type="module" src="./assets/js/app.js"></script>
+   <script src="./assets/js/components/header.js"></script>
+   <script src="./assets/js/components/content.js"></script>
+   <script src="./assets/js/components/footer.js"></script>
+</body>
+</html>
