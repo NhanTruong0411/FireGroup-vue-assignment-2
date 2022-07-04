@@ -167,7 +167,8 @@ new Vue({
 
 	// CREATED 
 	created: async function () {
-		const response = await fetch("http://127.0.0.1:5500/product.json");
+		//const response = await fetch("http://127.0.0.1:5500/product.json");
+		const response = await fetch("https://github.com/NhanTruong0411/FireGroup-vue-assignment-2/blob/master/product.json");
 		const data = await response.json();
 		this.productlist = data;
 		this.temp_array = [...this.productlist];
