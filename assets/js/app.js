@@ -92,7 +92,6 @@ new Vue({
 		},
 
 		update_product_list: function (arr) {
-			if (this.current_page == 1) {
 				this.paginationproduct = [];
 				for (let i = (this.current_page - 1) * this.records_per_page; i < (this.current_page * this.records_per_page); i++) {
 					if(arr[i]) {
@@ -102,13 +101,15 @@ new Vue({
 						break;
 					}
 				}
-			}
+			
 		},
 
 		do_filter: function () {
 			let searchString = this.search_input.toLowerCase();
 
 			if(searchString == "") {
+				this.current_page = 1;
+				this.temp_array = [];
 				this.temp_array = [...this.productlist]
 				this.update_product_list(this.temp_array);
 			} else {
@@ -119,8 +120,14 @@ new Vue({
 					return el.name.trim().toLowerCase().includes(searchString);
 				};
 	
-				this.temp_array = this.temp_array.filter(name) ? this.temp_array.filter(name) : [];
-				this.update_product_list(this.temp_array)
+				this.temp_array = this.temp_array.filter(name);
+				if(this.temp_array) {
+					this.update_product_list(this.temp_array)
+				} else {
+					this.temp_array = [];
+					this.update_product_list(this.temp_array);
+
+				}
 			}
 
 		},
@@ -147,12 +154,19 @@ new Vue({
 	computed: {
 	},
 
-
 	// WATCHER
 	watch: {
 		search_input() {
 			this.do_filter();
-		}
+		},
+
+		temp_array() {
+         if(this.temp_array.length == 0) {
+            this.paginationproduct = [];
+         } else {
+				this.update_product_list(this.temp_array)
+			}
+      },
 	},
 
 	// CREATED 

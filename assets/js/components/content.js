@@ -66,7 +66,6 @@ Vue.component('my-content', {
    // data
    data() {
       return {
-         current_page: 1,
          products_per_page: 10,
          none_display: 'none_display',
          check_all : false,
@@ -84,6 +83,7 @@ Vue.component('my-content', {
       'value', 
       'is_empty_obj',
       'temp_array',
+      'current_page'
    ],
 
 
@@ -122,6 +122,7 @@ Vue.component('my-content', {
             this.selected = []
          }
       },
+      
 
       selected() {
          this.$emit("selected_list", this.selected);
