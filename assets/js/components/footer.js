@@ -35,7 +35,7 @@ Vue.component('my-footer', {
    data() {
 		return {
          button_hidden: 'button_hidden',
-         is_prev_disabled: false,
+         is_prev_disabled: true,
          is_next_disabled: false,
 		}
    },
@@ -77,12 +77,16 @@ Vue.component('my-footer', {
       current_page() {
          if(this.current_page == 1 ) {
             this.is_prev_disabled = true;
-         } else if (this.current_page == this.num_pages()) {
+         } 
+         if (this.current_page == this.num_pages()) {
             this.is_next_disabled = true;
-            } else {
-               this.is_prev_disabled = false;
-               this.is_next_disabled = false;
-            }
+         } 
+         if(this.current_page != 1) {
+            this.is_prev_disabled = false;
+         }
+         if (this.current_page != this.num_pages()) {
+            this.is_next_disabled = false;
+         }
       }
    }
 

@@ -44,10 +44,10 @@ new Vue({
 			this.paginationproduct = [];
 
 			for (let i = (page - 1) * this.records_per_page; i < (page * this.records_per_page); i++) {
-				if(this.temp_array[i].id) {
-					this.paginationproduct.push(this.temp_array[i]);
-				} else {
+				if(this.temp_array[i] == undefined) {
 					break;
+				} else {
+					this.paginationproduct.push(this.temp_array[i]);
 				}
 			}
 		},
@@ -95,7 +95,7 @@ new Vue({
 			if (this.current_page == 1) {
 				this.paginationproduct = [];
 				for (let i = (this.current_page - 1) * this.records_per_page; i < (this.current_page * this.records_per_page); i++) {
-					if(arr[i].id) {
+					if(arr[i]) {
 						this.paginationproduct.push(arr[i]);
 					}
 					else {
@@ -108,14 +108,20 @@ new Vue({
 		do_filter: function () {
 			let searchString = this.search_input.toLowerCase();
 
-			this.temp_array = [];
-			this.temp_array = [...this.productlist];
+			if(searchString == "") {
+				this.update_product_list(this.productlist)
+			} else {
+				this.temp_array = [];
+				this.temp_array = [...this.productlist];
+	
+				let name = function (el) {
+					return el.name.trim().toLowerCase().includes(searchString);
+				};
+	
+				this.temp_array = this.temp_array.filter(name) ? this.temp_array.filter(name) : [];
+				this.update_product_list(this.temp_array)
+			}
 
-			let name = function (el) {
-				return el.name.trim().toLowerCase().includes(searchString);
-			};
-
-			this.paginationproduct = this.temp_array.filter(name) ? this.temp_array.filter(name) : [];
 		},
 
 		is_empty_obj: function (obj) {

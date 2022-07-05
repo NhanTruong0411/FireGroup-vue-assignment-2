@@ -71,7 +71,6 @@ Vue.component('my-content', {
          none_display: 'none_display',
          check_all : false,
          selected: [],
-
       };
    },
 
@@ -128,8 +127,6 @@ Vue.component('my-content', {
          this.$emit("selected_list", this.selected);
          
       },
-
-
 
    }
 
