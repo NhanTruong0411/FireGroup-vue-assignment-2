@@ -7,11 +7,11 @@ Vue.component('my-footer', {
             <div class="container">
             
                <div class="footer__pagination">
-                  <button class="button" id="btn_prev" @click="prev_page()" :class="is_prev_disabled?button_hidden:''">
+                  <button class="button" @click="prev_page()" :disabled="is_prev_disabled">
                      <img src="./assets/images/previous.png">
                      <small>Prev</small>
                   </button>
-                  <button class="button" id="btn_next" @click="next_page()" :class="is_next_disabled?button_hidden:''" >
+                  <button class="button" @click="next_page()" :disabled="is_next_disabled" >
                      <small>Next</small>
                      <img src="./assets/images/next.png">
                   </button>
@@ -35,6 +35,8 @@ Vue.component('my-footer', {
    data() {
 		return {
          button_hidden: 'button_hidden',
+         is_prev_disabled: false,
+         is_next_disabled: false,
 		}
    },
 
@@ -42,9 +44,9 @@ Vue.component('my-footer', {
    props: {
       prev_page : { type: Function },
       next_page : { type: Function },
-      is_prev_disabled: { type: Boolean },
-      is_next_disabled: { type: Boolean },
       selected_product_list: { type: Array },
+      current_page: { type: Number },
+      num_pages: { type: Function }
    },
 
    // medthods
@@ -64,7 +66,6 @@ Vue.component('my-footer', {
 
    // computed
    computed: {
-
    },
 
    // Created
@@ -73,6 +74,16 @@ Vue.component('my-footer', {
 
    // Watch
    watch: {
+      current_page() {
+         if(this.current_page == 1 ) {
+            this.is_prev_disabled = true;
+         } else if (this.current_page == this.num_pages()) {
+            this.is_next_disabled = true;
+            } else {
+               this.is_prev_disabled = false;
+               this.is_next_disabled = false;
+            }
+      }
    }
 
 });

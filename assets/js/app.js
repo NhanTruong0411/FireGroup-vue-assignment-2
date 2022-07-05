@@ -44,7 +44,11 @@ new Vue({
 			this.paginationproduct = [];
 
 			for (let i = (page - 1) * this.records_per_page; i < (page * this.records_per_page); i++) {
-				this.paginationproduct.push(this.temp_array[i]);
+				if(this.temp_array[i].id) {
+					this.paginationproduct.push(this.temp_array[i]);
+				} else {
+					break;
+				}
 			}
 
 		},
@@ -91,13 +95,13 @@ new Vue({
 		update_product_list: function (arr) {
 			if (this.current_page == 1) {
 				this.paginationproduct = [];
-				for (let i = 0; i < this.records_per_page; i++) {
-					this.paginationproduct.push(arr[i]);
-				}
-			} else {
-				this.paginationproduct = [];
 				for (let i = (this.current_page - 1) * this.records_per_page; i < (this.current_page * this.records_per_page); i++) {
-					this.paginationproduct.push(arr[i]);
+					if(arr[i].id) {
+						this.paginationproduct.push(arr[i]);
+					}
+					else {
+						break;
+					}
 				}
 			}
 		},
@@ -137,23 +141,6 @@ new Vue({
 
 	// COMPUTED
 	computed: {
-		is_prev_disabled: function () {
-			if (this.current_page == 1) {
-				return true;
-			} else {
-				return false;
-			}
-		},
-
-		is_next_disabled: function () {
-			if (this.current_page == this.num_pages() - 1) {
-				return true;
-			} else {
-				return false;
-			}
-		},
-
-
 
 	},
 
