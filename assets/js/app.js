@@ -50,7 +50,6 @@ new Vue({
 					break;
 				}
 			}
-
 		},
 
 		first_page: function () {
@@ -117,7 +116,6 @@ new Vue({
 			};
 
 			this.paginationproduct = this.temp_array.filter(name) ? this.temp_array.filter(name) : [];
-
 		},
 
 		is_empty_obj: function (obj) {
@@ -125,7 +123,6 @@ new Vue({
 				if (obj.hasOwnProperty(prop))
 					return false;
 			}
-
 			return true;
 		},
 
@@ -141,7 +138,6 @@ new Vue({
 
 	// COMPUTED
 	computed: {
-
 	},
 
 
@@ -164,8 +160,9 @@ new Vue({
 
 	//  MOUNTED
 	mounted: function () {
-
 	}
+
+
 
 
 
