@@ -109,7 +109,8 @@ new Vue({
 			let searchString = this.search_input.toLowerCase();
 
 			if(searchString == "") {
-				this.update_product_list(this.productlist)
+				this.temp_array = [...this.productlist]
+				this.update_product_list(this.temp_array);
 			} else {
 				this.temp_array = [];
 				this.temp_array = [...this.productlist];
