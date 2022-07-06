@@ -30,7 +30,8 @@ Vue.component('my-content', {
                <div class="content__select-all">
                   <div class="content__select-all--checkbox">
                      <input id="check_all" type="checkbox" v-model="check_all">
-                     <h3 v-if="!is_empty_obj(selected)">{{selected.length}} Products selected</h3>
+                     <h3 v-if="!is_empty_obj(selected) && selected.length!=1">{{selected.length}} Products selected</h3>
+                     <h3 v-else-if="!is_empty_obj(selected) && selected.length==1">1 Product selected</h3>
                      <h3 v-else>Product</h3>
                   </div>
                   <div class="content__select-all--price">
@@ -95,10 +96,6 @@ Vue.component('my-content', {
    },
 
 
-   // computed
-   computed: {
-   },
-
    // created
    created: function () {
       let local = localStorage.getItem("product_store") ? localStorage.getItem("product_store") : '[]';
@@ -126,12 +123,8 @@ Vue.component('my-content', {
 
       selected() {
          this.$emit("selected_list", this.selected);
-         
       },
 
    }
-
-
-
 
 });

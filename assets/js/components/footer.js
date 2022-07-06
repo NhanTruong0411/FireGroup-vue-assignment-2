@@ -64,14 +64,6 @@ Vue.component('my-footer', {
       }
    },
 
-   // computed
-   computed: {
-   },
-
-   // Created
-   created: function() {
-   },
-
    // Watch
    watch: {
       current_page() {

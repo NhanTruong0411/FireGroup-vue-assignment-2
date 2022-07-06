@@ -7,6 +7,7 @@ new Vue({
 		return {
 			productlist: [],
 			temp_array: [],
+			sort_array: [],
 			paginationproduct: [],
 			selected_product_list: [],
 			current_page: 1,
@@ -66,18 +67,18 @@ new Vue({
 			if (!this.isSort) {
 				this.isSort = true;
 				sortbtn.innerHTML = "Product title Z - A";
-				this.temp_array = [];
-				this.temp_array = [...this.productlist];
-				this.temp_array = this.temp_array.sort(this.doSort);
-				this.update_product_list(this.temp_array);
+				this.sort_array = [];
+				this.sort_array = [...this.temp_array];
+				this.sort_array.sort(this.doSort);
+				this.update_product_list(this.sort_array);
 			}
 			else {
 				this.isSort = false;
 				sortbtn.innerHTML = "Product title A - Z";
-				this.temp_array = [];
-				this.temp_array = [...this.productlist];
-				this.temp_array = this.temp_array.sort(this.doSort).reverse();
-				this.update_product_list(this.temp_array);
+				this.sort_array = [];
+				this.sort_array = [...this.temp_array];
+				this.sort_array.sort(this.doSort).reverse();
+				this.update_product_list(this.sort_array);
 			}
 		},
 
@@ -147,11 +148,6 @@ new Vue({
 			})
 		}
 
-	},
-
-
-	// COMPUTED
-	computed: {
 	},
 
 	// WATCHER
